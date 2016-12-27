@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
 
 
 /**
@@ -25,23 +25,40 @@ var isAuthenticated = function (req, res, next) {
 };
 
 passport.use(new LocalStrategy({
-  usernameField: 'user_id',
+  usernameField: 'username',
   passwordField: 'password',
   passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
-}, function (req, user_id, password, done) {
-  if (false) {
-    return done(null, false);
-  } else {
-    var user = {
-      user: user_id
-  };
-    return done(null, user)
-  }
+}, function (req, username, password, done) {
+  return done(null, {
+    'user_id': 'player001',
+    'nickname': 'nickname'
+  });
 }));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {title: 'Express'});
+});
+
+
+router.get('/login', function (req, res) {
+  console.log(req.user);
+  res.render('login', {
+    title: 'login'
+  })
+})
+
+
+router.post('/login', passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}), // 인증실패시 401 리턴, {} -> 인증 스트레티지
+  function (req, res) {
+    res.redirect('/');
+  });
+
+
+/*Log out*/
+router.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
 });
 
 
