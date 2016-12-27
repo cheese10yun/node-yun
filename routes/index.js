@@ -24,6 +24,16 @@ var isAuthenticated = function (req, res, next) {
   res.redirect('/login');
 };
 
+/**
+ * TODO user, password field 좀 정확히 알아보자
+ * TODO flash 가 정확히 무슨 역할을 하는지?
+ * TODO function (req, username, password, done) 여기 arg에 뭐가 어떻게 들어가는지
+ * TODO login, logout 간단소개
+ * TODO isAuthenticated 함수 소개 이해해야된다
+ * TODO  passport.serializeUser, deserializeUser 이해 및 소개
+ *
+ * */
+
 passport.use(new LocalStrategy({
   usernameField: 'username',
   passwordField: 'password',
