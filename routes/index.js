@@ -39,24 +39,27 @@ passport.use(new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
 }, function (req, username, password, done) {
+  console.log(username);
+  console.log(password);
   return done(null, {
-    'user_id': 'player001',
-    'nickname': 'nickname'
+    'user_id': username,
   });
 }));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {title: 'Express'});
+  console.log(req.user);
+  res.render('index', {
+    title: 'Express'
+  });
 });
 
 
 router.get('/login', function (req, res) {
-  console.log(req.user);
   res.render('login', {
     title: 'login'
   })
-})
+});
 
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}), // 인증실패시 401 리턴, {} -> 인증 스트레티지
