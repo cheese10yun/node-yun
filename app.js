@@ -33,14 +33,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules'))); // 노드모듈 디렉토토리 추가
 
 
-/*필수 블로그 소개글에 추가시킬*/
+
 app.use(cookieSession({
-  keys: ['node_yun']
+  keys: ['node_yun'],
+  cookie: {
+    maxAge: 100 * 60 * 60 // 쿠키 유효기간 1시간
+  }
 }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-/*필수 블로그 소개글에 추가시킬*/
 
 app.use('/', index);
 app.use('/users', users);

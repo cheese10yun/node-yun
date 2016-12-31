@@ -17,33 +17,26 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-/*블로그 소개시 이함수 소개하자*/
+/*로그인 유저 판단 로직*/
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
   res.redirect('/login');
 };
 
-/**
- * TODO user, password field 좀 정확히 알아보자
- * TODO flash 가 정확히 무슨 역할을 하는지?
- * TODO function (req, username, password, done) 여기 arg에 뭐가 어떻게 들어가는지
- * TODO login, logout 간단소개
- * TODO isAuthenticated 함수 소개 이해해야된다
- * TODO  passport.serializeUser, deserializeUser 이해 및 소개
- *
- * */
 
 passport.use(new LocalStrategy({
   usernameField: 'username',
   passwordField: 'password',
   passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
 }, function (req, username, password, done) {
-  console.log(username);
-  console.log(password);
-  return done(null, {
-    'user_id': username,
-  });
+  if(username === 'user001' && password === 'password'){
+    return done(null, {
+      'user_id': username,
+    });
+  }else{
+    return done(false, null)
+  }
 }));
 
 /* GET home page. */
@@ -67,11 +60,18 @@ router.post('/login', passport.authenticate('local', {failureRedirect: '/login',
     res.redirect('/');
   });
 
-
 /*Log out*/
 router.get('/logout', function (req, res) {
   req.logout();
   res.redirect('/');
+});
+
+
+router.get('/myinfo', isAuthenticated, function (req, res) {
+  res.render('myinfo',{
+    title: 'My Info',
+    user_info: req.user
+  })
 });
 
 
