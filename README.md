@@ -6,6 +6,6 @@
 
 ##develop-passport
 
-### 본 예제는 passport를 통한 로그인 인증 예제입니다. 예제에 대한소개는 블로그 설명을 참고하세요
+### 본 예제는 passport를 통한 로그인 인증 예제입니다. 예제에 대한소개는[블로그](https://brunch.co.kr/@cheese10yun/12)설명을 참고하세요
 
 +$ npm install
