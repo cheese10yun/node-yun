@@ -23,7 +23,7 @@ npm start
 
 
 ###develop-mysql
-*본 branch는 mysql 연동 예제입니다. 예제에 대한소개는 [Node.JS + Mysql 연동](ㅇ)설명을 참고하세요*
+*본 branch는 mysql 연동 예제입니다. 예제에 대한소개는 [Node.JS + Mysql 연동](https://brunch.co.kr/@cheese10yun/14)설명을 참고하세요*
 
 ###develop-passport
 
