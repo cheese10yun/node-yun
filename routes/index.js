@@ -3,6 +3,10 @@ var router = express.Router();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
+var mysql_dbc = require('../db/db_con')();
+var connection = mysql_dbc.init();
+mysql_dbc.test_open(connection);
+
 
 /**
  * */
@@ -30,11 +34,11 @@ passport.use(new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
 }, function (req, username, password, done) {
-  if(username === 'user001' && password === 'password'){
+  if (username === 'user001' && password === 'password') {
     return done(null, {
       'user_id': username,
     });
-  }else{
+  } else {
     return done(false, null)
   }
 }));
@@ -68,13 +72,18 @@ router.get('/logout', function (req, res) {
 
 
 router.get('/myinfo', isAuthenticated, function (req, res) {
-  res.render('myinfo',{
+  res.render('myinfo', {
     title: 'My Info',
     user_info: req.user
   })
 });
 
-
+// router.get('/mysql/test', function (req, res) {
+//   var stmt = 'select *from ....';
+//   connection.query(stmt, function (err, result) {
+//     .....
+//   })
+// });
 
 
 module.exports = router;
