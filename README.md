@@ -26,6 +26,6 @@ npm start
 *본 branch는 mysql 연동 예제입니다. 예제에 대한소개는 [Node.JS + Mysql 연동](https://brunch.co.kr/@cheese10yun/14)설명을 참고하세요*
 
 ###develop-passport
-
 *본 branch는 passport를 통한 로그인 인증 예제입니다. 예제에 대한소개는 [블로그 Node Passport를 이용한 Login](https://brunch.co.kr/@cheese10yun/12)설명을 참고하세요*
 
+###develop-passport

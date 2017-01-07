@@ -7,6 +7,8 @@ var mysql_dbc = require('../db/db_con')();
 var connection = mysql_dbc.init();
 mysql_dbc.test_open(connection);
 
+var bcrypt = require('bcrypt');
+
 
 /**
  * */
@@ -34,13 +36,28 @@ passport.use(new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true //인증을 수행하는 인증 함수로 HTTP request를 그대로  전달할지 여부를 결정한다
 }, function (req, username, password, done) {
-  if (username === 'user001' && password === 'password') {
-    return done(null, {
-      'user_id': username,
-    });
-  } else {
-    return done(false, null)
-  }
+  connection.query('select *from `user` where `user_id` = ?', username, function (err, result) {
+    if (err) {
+      console.log('err :' + err);
+      return done(false, null);
+    } else {
+      if (result.length === 0) {
+        console.log('해당 유저가 없습니다');
+        return done(false, null);
+      } else {
+        if (!bcrypt.compareSync(password, result[0].password)) {
+          console.log('패스워드가 일치하지 않습니다');
+          return done(false, null);
+        } else {
+          console.log('로그인 성공');
+          return done(null, {
+            user_id: result[0].user_id,
+            nickname: result[0].nickname
+          });
+        }
+      }
+    }
+  })
 }));
 
 /* GET home page. */
@@ -53,9 +70,17 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/login', function (req, res) {
-  res.render('login', {
-    title: 'login'
-  })
+
+  console.log(req.user);
+
+  if(req.user !== undefined){
+    res.redirect('/')
+  }else{
+    res.render('login', {
+      title: 'login'
+    })
+  }
+
 });
 
 
@@ -78,12 +103,6 @@ router.get('/myinfo', isAuthenticated, function (req, res) {
   })
 });
 
-// router.get('/mysql/test', function (req, res) {
-//   var stmt = 'select *from ....';
-//   connection.query(stmt, function (err, result) {
-//     .....
-//   })
-// });
 
 
 module.exports = router;

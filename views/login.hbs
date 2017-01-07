@@ -11,9 +11,12 @@
                         <div class="form-group">
                             <input type="text" id="username" name="username" class="form-control input-lg" placeholder="ID" required="required" autocomplete="off" />
                         </div>
+
+                        <div class="errorTxt"></div>
                         <div class="form-group">
                             <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Password" required="required" autocomplete="off" />
                         </div>
+                        <div class="errorTxt"></div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-block btn-lg btn-primary btn_login" value="Login" />
                         </div>
@@ -26,3 +29,6 @@
     <!-- /.container-fluid -->
 </div>
 <!-- /#page-wrapper -->
+
+<script src="jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="javascripts/login.js"></script>

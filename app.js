@@ -14,6 +14,7 @@ var flash = require('connect-flash'); // session 관련해서 사용됨. 로그�
 /*router*/
 var index = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 /*router*/
 
 var app = express();
@@ -24,7 +25,7 @@ app.set('view engine', 'hbs');
 
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -46,6 +47,7 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api/v1', api);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
