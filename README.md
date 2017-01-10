@@ -41,4 +41,5 @@ $ mysql -u root -p node < node_yun.sql
 ###develop-passport-mysql
 *본 branch는 passport를 통한 로그인과 데이터베이스(mysql)예제입니다. 예제애 대한소개는 [블로그 Node Passport를 이용한 Login(2)](https://brunch.co.kr/@cheese10yun/15)설명을 참고하세요*
 
-###develop-
+###develop-crontab-api
+*본 branch는 Crontab을 이용해서 특정 시점에Node API를 호출하는 내용입니다. 에제에대한 설명은 [블로그 Crontab을 이용한 노드 API 호출](http://engineeryun.tistory.com/entry/Crontab%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%85%B8%EB%93%9C-API-%ED%98%B8%EC%B6%9C)을 참고해주세요*
