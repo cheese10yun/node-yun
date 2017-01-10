@@ -7,7 +7,7 @@ var router = express.Router();
 var mysql_dbc = require('../db/db_con')();
 var connection = mysql_dbc.init();
 var bcrypt = require('bcrypt');
-const saltRounds = 10;
+
 
 
 router.post('/login', function (req, res, next) {
@@ -30,5 +30,14 @@ router.post('/login', function (req, res, next) {
       }
     }
   });
+});
+
+
+router.delete('/crontab', function (req, res) {
+
+  console.log('여기는 들어오나');
+
+
+  var test = req.body.test;
 });
 module.exports = router;

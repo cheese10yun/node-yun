@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
+var hbs = require('hbs');
 var passport = require('passport') //passport module add
   , LocalStrategy = require('passport-local').Strategy;
 var cookieSession = require('cookie-session');
@@ -32,6 +32,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules'))); // 노드모듈 디렉토토리 추가
+
+hbs.registerPartials(__dirname + '/views/modal');
 
 
 
