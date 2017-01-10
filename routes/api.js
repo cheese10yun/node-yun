@@ -9,11 +9,10 @@ var connection = mysql_dbc.init();
 var bcrypt = require('bcrypt');
 
 
-
 router.post('/login', function (req, res, next) {
   var
     user_id = req.body.username,
-    password =   req.body.password;
+    password = req.body.password;
 
   connection.query('select *from `user` where `user_id` = ?', user_id, function (err, result) {
     if (err) {
@@ -32,12 +31,21 @@ router.post('/login', function (req, res, next) {
   });
 });
 
-
 router.delete('/crontab', function (req, res) {
-
-  console.log('여기는 들어오나');
-
-
-  var test = req.body.test;
+  var sql = req.body.sql;
+  connection.query(sql, function (err, result) {
+    if (err) {
+      res.json({
+        success: false,
+        err: err
+      });
+    } else {
+      console.log('Delete Success');
+      res.json({
+        success: true,
+        msg: 'Delete Success'
+      })
+    }
+  });
 });
 module.exports = router;
