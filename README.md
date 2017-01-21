@@ -22,7 +22,6 @@ exit
 $ cd node_yun
 $ mysql -u root -p node < node_yun.sql
 ```
- 
 
 
 ###AWS EC2 Node + Nginx Setting

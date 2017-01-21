@@ -20,7 +20,10 @@
     "morgan": "~1.7.0",
     "mysql": "^2.12.0",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-kakao": "0.0.4",
     "passport-local": "^1.0.0",
+    "passport-naver": "^1.0.4",
     "serve-favicon": "~2.3.0"
   }
 }

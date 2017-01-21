@@ -4,7 +4,7 @@
 
 var express = require('express');
 var router = express.Router();
-var mysql_dbc = require('../db/db_con')();
+var mysql_dbc = require('../commons/db_con')();
 var connection = mysql_dbc.init();
 var bcrypt = require('bcrypt');
 
@@ -14,10 +14,13 @@ router.post('/login', function (req, res, next) {
     user_id = req.body.username,
     password = req.body.password;
 
+  console.log(bcrypt.hashSync(password, 10));
+
   connection.query('select *from `user` where `user_id` = ?', user_id, function (err, result) {
     if (err) {
       console.log('err :' + err);
     } else {
+      console.log(result);
       if (result.length === 0) {
         res.json({success: false, msg: '해당 유저가 존재하지 않습니다.'})
       } else {
