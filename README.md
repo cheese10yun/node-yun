@@ -42,3 +42,6 @@ $ mysql -u root -p node < node_yun.sql
 
 ###develop-crontab-api
 *본 branch는 Crontab을 이용해서 특정 시점에Node API를 호출하는 내용입니다. 에제에대한 설명은 [블로그 Crontab을 이용한 노드 API 호출](http://engineeryun.tistory.com/entry/Crontab%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%85%B8%EB%93%9C-API-%ED%98%B8%EC%B6%9C)을 참고해주세요*
+
+###develop-passport-social-login
+*본 branch는 소셜로그인 기능으로 페이스북, 카카오, 네이버 아이드를 통한 회원 가입 및 로그인 처리에 대한 예제입니다. [블로그 Passport를 이용한 네이버, 카카오, 페이스북 로그인](http://engineeryun.tistory.com/entry/Passport%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%B9%B4%EC%B9%B4%EC%98%A4-%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%B6%81-%EB%A1%9C%EA%B7%B8%EC%9D%B8)을 참고해주세요*
