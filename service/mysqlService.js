@@ -10,7 +10,6 @@ var bcrypt = require('bcrypt');
 var mysql = {};
 
 mysql.multipleInsert = function () {
-    
     var stmt_multiple_insert = 'insert into `user` (`user_id`, `password`, `nickname`, `email`, `signup_dt`) values ?;'; // 쿼리문
     
     var values = [
