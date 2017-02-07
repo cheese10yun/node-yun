@@ -52,4 +52,4 @@ $ mysql -u root -p node < node_yun.sql
 * 본 branch는 노드 서버에서 다른 API를 호출 예제입니다. [블로그](https://cheese10yun.github.io/API-CALL)설명을 참고하세요
 
 ###develop-s3-upload
-* 본 branch는 노드서버에서 AWS S3 업로드 예제 입니다.
+* 본 branch는 노드서버에서 AWS S3 업로드 예제 입니다.[블로그 Node AWS S3 업로드](https://cheese10yun.github.io/Node-AWS-S3-Upload)설명을 참고허세요 

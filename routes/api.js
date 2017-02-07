@@ -2,13 +2,15 @@
  * Created by cheese on 2017. 1. 6..
  */
 
-var express = require('express');
-var router = express.Router();
-var mysql_dbc = require('../commons/db_con')();
-var connection = mysql_dbc.init();
-var bcrypt = require('bcrypt');
-
-var API_Call = require('../service/API_Call')('another');
+var
+    express = require('express'),
+    router = express.Router(),
+    mysql_dbc = require('../commons/db_con')(),
+    connection = mysql_dbc.init(),
+    bcrypt = require('bcrypt'),
+    async = require('async'),
+    Upload = require('../service/UploadService'),
+    API_Call = require('../service/API_Call')('another');
 
 
 router.post('/login', function (req, res, next) {
@@ -16,9 +18,6 @@ router.post('/login', function (req, res, next) {
     var
         user_id = req.body.user_id,
         password = req.body.password;
-    
-    console.log(user_id, password);
-    console.log(bcrypt.hashSync(password, 10));
     
     connection.query('select *from `user` where `user_id` = ?;', user_id, function (err, result) {
         if (err) {
@@ -67,6 +66,30 @@ router.delete('/crontab', function (req, res) {
                 success: true,
                 msg: 'Delete Success'
             })
+        }
+    });
+});
+
+router.post('/upload', function (req, res) {
+    var tasks = [
+        function (callback) {
+            Upload.formidable(req, function (err, files, field) {
+                console.log(err, files);
+                callback(err, files);
+            })
+        },
+        function (files, callback) {
+            Upload.s3(files, function (err, result) {
+                callback(err, files);
+            });
+        }
+    ];
+    async.waterfall(tasks, function (err, result) {
+        // console.log(err);
+        if(!err){
+            res.json({success:true, msg:'업로드 성공'})
+        }else{
+            res.json({success:false, msg:'실패', err:err})
         }
     });
 });

@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www nodemon -e hbs"
   },
   "dependencies": {
+    "async": "^2.1.4",
     "aws-sdk": "^2.9.0",
     "bcrypt": "^1.0.2",
     "body-parser": "~1.15.2",

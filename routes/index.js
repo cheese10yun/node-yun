@@ -253,11 +253,15 @@ router.get('/myinfo', isAuthenticated, function (req, res) {
 });
 
 
+router.get('/upload', function (req, res) {
+    res.render('upload', {
+        title: 'AWS S3 Up',
+    })
+});
+
+
 router.get('/mutiple/insert', function (req, res) {
-    
     mysql_service.multipleInsert();
-    
-    
 });
 
 module.exports = router;
