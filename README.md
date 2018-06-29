@@ -1,77 +1,3 @@
-<!-- TOC -->
-
-- [Proejct 소개](#proejct-소개)
-    - [프로그램 실행](#프로그램-실행)
-    - [Database 설정](#database-설정)
-- [AWS EC2 Node + Nginx Setting](#aws-ec2-node--nginx-setting)
-    - [1. EC2 기본 셋팅 (AMI)](#1-ec2-기본-셋팅-ami)
-        - [Port 설정](#port-설정)
-        - [GitHub 설정](#github-설정)
-    - [2. EC2 Node.js 설치](#2-ec2-nodejs-설치)
-    - [3. GitHub Clone](#3-github-clone)
-    - [4. Nginx 연동](#4-nginx-연동)
-- [PM2 이용한 Node 프로세스 관리](#pm2-이용한-node-프로세스-관리)
-    - [1. PM2 소개 및 설치](#1-pm2-소개-및-설치)
-    - [2. PM2 간단 명령어](#2-pm2-간단-명령어)
-    - [3. 쉘 스크립트 PM2 제어](#3-쉘-스크립트-pm2-제어)
-        - [클러스터 모드](#클러스터-모드)
-        - [정리](#정리)
-- [Node.JS + Mysql 연동 [develop-mysql]](#nodejs--mysql-연동-develop-mysql)
-    - [mysql 모듈설치](#mysql-모듈설치)
-    - [마무리](#마무리)
-- [Passport를 이용한 Login [develop-passport]](#passport를-이용한-login-develop-passport)
-    - [필수 모듈 설치](#필수-모듈-설치)
-    - [Passport 설정](#passport-설정)
-        - [Session 정보 확인](#session-정보-확인)
-    - [로그인 유저 판단](#로그인-유저-판단)
-    - [정리하며...](#정리하며)
-- [Node Passport를 이용한 Login + Mysql [develop-passport-mysql]](#node-passport를-이용한-login--mysql-develop-passport-mysql)
-    - [필수 모듈 설치](#필수-모듈-설치-1)
-    - [API 라우터 설정](#api-라우터-설정)
-    - [필수 모듈 require](#필수-모듈-require)
-    - [API Login 로직](#api-login-로직)
-        - [이전 포스팅에서 작성한 login.hbs 하단에 아래코드를 붙여넣습니다.](#이전-포스팅에서-작성한-loginhbs-하단에-아래코드를-붙여넣습니다)
-        - [login.js jQeury validate remove](#loginjs-jqeury-validate-remove)
-    - [정리하며...](#정리하며-1)
-- [Crontab을 이용한 노드 API 호출 [develop-crontab-api]](#crontab을-이용한-노드-api-호출-develop-crontab-api)
-    - [Crontab 간단 설명](#crontab-간단-설명)
-    - [Crontab 등록](#crontab-등록)
-    - [Node API 설정](#node-api-설정)
-    - [Crontab 실행 확인](#crontab-실행-확인)
-    - [마무리...](#마무리)
-- [Passport를 이용한 네이버, 카카오, 페이스북 로그인 [develop-passport-social-login]](#passport를-이용한-네이버-카카오-페이스북-로그인-develop-passport-social-login)
-    - [Developers 등록](#developers-등록)
-    - [필수 모듈설치 및 require](#필수-모듈설치-및-require)
-    - [Developers 정보 등록](#developers-정보-등록)
-    - [회원 가입 페이지](#회원-가입-페이지)
-    - [Passport 로직 구현](#passport-로직-구현)
-    - [로그인 및 회원 가입 로직](#로그인-및-회원-가입-로직)
-    - [마무리](#마무리-1)
-- [Node Mysql Multiple Insert [develop-passport-mysql-multiple-insert]](#node-mysql-multiple-insert-develop-passport-mysql-multiple-insert)
-- [Node 다른 서버 API 호출 [develop-api-call]](#node-다른-서버-api-호출-develop-api-call)
-    - [필수 패키지 설치](#필수-패키지-설치)
-    - [전체 소스](#전체-소스)
-    - [HOST 설정](#host-설정)
-    - [타 서버의 API 정보 설정](#타-서버의-api-정보-설정)
-    - [로그인 API를 호출 오는 로직으로 간단하게 설명해드리겠습니다.](#로그인-api를-호출-오는-로직으로-간단하게-설명해드리겠습니다)
-    - [API 호출](#api-호출)
-    - [마무리](#마무리-2)
-- [AWS S3 업로드시 이미지 최적화 [develop-s3-upload]](#aws-s3-업로드시-이미지-최적화-develop-s3-upload)
-    - [작업순서](#작업순서)
-    - [필수 패키지 설치](#필수-패키지-설치-1)
-    - [UploadService.js 설명](#uploadservicejs-설명)
-        - [formidable 모듈을 이용한 이미지 업로드](#formidable-모듈을-이용한-이미지-업로드)
-        - [imagemin 모듈을 이용한 이미지 최적화](#imagemin-모듈을-이용한-이미지-최적화)
-        - [imageminPngquant 플러그인](#imageminpngquant-플러그인)
-        - [최적화 완료된 이미지 S3 업로드](#최적화-완료된-이미지-s3-업로드)
-    - [router 에서 사용법](#router-에서-사용법)
-        - [tasks 작업은 UploadService 모듈로 진행](#tasks-작업은-uploadservice-모듈로-진행)
-    - [사이즈 비교](#사이즈-비교)
-    - [원본 이미지](#원본-이미지)
-    - [최적화 이미지](#최적화-이미지)
-    - [마무리](#마무리-3)
-
-<!-- /TOC -->
 
 # Proejct 소개
 * 프로젝트 명 [Branch name] ex) ->  AWS S3 업로드시 이미지 최적화 [develop-s3-upload]
@@ -93,8 +19,21 @@ $ cd node_yun
 $ mysql -u root -p node < node_yun.sql
 ```
 
+## 목차
 
-# AWS EC2 Node + Nginx Setting
+- [Proejct 소개](#proejct-소개)
+- [AWS EC2 Node + Nginx Setting](#aws-ec2-node--nginx-setting)
+- [PM2 이용한 Node 프로세스 관리](#pm2-이용한-node-프로세스-관리)
+- [Node.JS + Mysql 연동 [develop-mysql]](#nodejs--mysql-연동-develop-mysql)
+- [Passport를 이용한 Login [develop-passport]](#passport를-이용한-login-develop-passport)
+- [Node Passport를 이용한 Login + Mysql [develop-passport-mysql]](#node-passport를-이용한-login--mysql-develop-passport-mysql)
+- [Crontab을 이용한 노드 API 호출 [develop-crontab-api]](#crontab을-이용한-노드-api-호출-develop-crontab-api)
+- [Passport를 이용한 네이버, 카카오, 페이스북 로그인 [develop-passport-social-login]](#passport를-이용한-네이버-카카오-페이스북-로그인-develop-passport-social-login)
+- [Node Mysql Multiple Insert [develop-passport-mysql-multiple-insert]](#node-mysql-multiple-insert-develop-passport-mysql-multiple-insert)
+- [Node 다른 서버 API 호출 [develop-api-call]](#node-다른-서버-api-호출-develop-api-call)
+- [AWS S3 업로드시 이미지 최적화 [develop-s3-upload]](#aws-s3-업로드시-이미지-최적화-develop-s3-upload)
+
+## AWS EC2 Node + Nginx Setting
 안녕하세요. 스타트업에서 근무 중인 신입 개발자입니다. 근무하면서 얻은 정보를 정리하며 올려봅니다. 사내환경 같은 경우는 각자 로컬 환경에서 개발하고, 어느 정도 작업이 완료됐다 싶으면 테스트 서버(EC2)에 프로젝트를 올리는 작업을 아래와 같이 진행하게 됩니다.
 
 
@@ -103,7 +42,7 @@ $ mysql -u root -p node < node_yun.sql
 3. GitHub Clone
 4. Nginx 연동
 
-## 1. EC2 기본 셋팅 (AMI)
+### 1. EC2 기본 셋팅 (AMI)
 AWS EC2에 접속하셔서 필수 패키지 설치를 진행합니다.
 
 ```bash
@@ -114,17 +53,17 @@ sudo yum install -y nginx
 ```
 
 
-### Port 설정
+#### Port 설정
 EC2의 포트 80, 3000이 열려있어야 합니다. EC2포트 설정은 여기서 다룰 내용이 아니니 생략하겠습니다. 포트 설정은 원하시는 포트를 사용하셔도 됩니다만 기본 포트를 권장합니다.
 
 ![EC2 Innound](https://i.imgur.com/XnEOclk.png)
 
 
-### GitHub 설정
+#### GitHub 설정
 GitHub에 프로젝트를 업로드해주세요. GitHub 설정은 여기서 다룰 내용이 아니니 생략하겠습니다.
 
 
-## 2. EC2 Node.js 설치
+### 2. EC2 Node.js 설치
 AWS EC2에 접속하셔서 아래 명령어를 순차적으로 입력합니다. 다른 버전 노드를 설치해도 무방합니다만 로컬에 있는 노드 버전과 동일하게 설치하는 것을 권장합니다. 다소 시간이 걸리는 작업입니다.
 
 ```bash
@@ -139,7 +78,7 @@ sudo make install
 
 ![Node, NPM Version](https://i.imgur.com/joOtMGi.png)
 
-## 3. GitHub Clone
+### 3. GitHub Clone
 이미 프로젝트가 GitHub에 업로드되었 다고 가정하고 진행하겠습니다.
 
 ```bash
@@ -164,7 +103,7 @@ npm start
 
 EC2 IP:3000로 접속하시면 해당 노드 서버가 실행 있는 것을 확인하실 수 있습니다. 만약 접속이 안되시면 EC2 IP 및 inbound 설정을 확인해보세요.
 
-## 4. Nginx 연동
+### 4. Nginx 연동
 
 nginx를 실행시킨 이후 EC2 IP로 접속하시면 아래 그림과 같은 화면이 출력되시면 nginx 설정으로 진행하시면 됩니다.
 
@@ -211,7 +150,7 @@ Nginx를 재실행시키시고 EC2 IP에 접속하시면 Nginx 화면이 아니�
 
 현재 회사에서 노드를 기반으로 서비스하고 있어 node 중심적으로 블로그 진행할 거 같습니다. 노드나 스타트업에 관심이 있는 분이시면 종종 찾아와 주시기 바랍니다.
 
-# PM2 이용한 Node 프로세스 관리
+## PM2 이용한 Node 프로세스 관리
 
 안녕하세요 스타트업에서 근무하고 있는 신입 개발자입니다. 저희는 Node 프로세스 관리를 PM2 모듈을 이용해서 관리하고 있습니다. PM2에 대한 기초지식이 있으신 분들은 3번 항목만 보셔도 좋습니다.
 
@@ -221,7 +160,7 @@ Nginx를 재실행시키시고 EC2 IP에 접속하시면 Nginx 화면이 아니�
 3. 쉘 스크립트 PM2 제어
 
 
-## 1. PM2 소개 및 설치  
+### 1. PM2 소개 및 설치  
 
 개발 중에 에러를 만나면 노드  서버가 강제로 죽어 버리는 경우를 빈번하게 맞이하게 됩니다. 이럴 때 앱을 재실행해주는 기능도 담당하고 있어 실제 노드 서버에서는 필수적인 패키지이라고 할 수 있습니다. 물론 이밖에 다양한 기능들을 재공해 주고 있습니다. 기능을 크게 정리하면 다음과 같습니다.
 
@@ -235,7 +174,7 @@ Nginx를 재실행시키시고 EC2 IP에 접속하시면 Nginx 화면이 아니�
 ```
 
 
-## 2. PM2 간단 명령어
+### 2. PM2 간단 명령어
 
 ```bash
 pm2 start  <실행시킬 서버. js> -- name <AppName>
@@ -270,7 +209,7 @@ pm2 show <app_name>
 pm2 정보뿐만이 아니라 노드 버전, 로그 위치, 기타 등등 다양한 정보를 확인하실 수 있습니다. 또 git을 사용하신다면 branch 정보 등 간략한 정보도 출력됩니다.
 
 
-## 3. 쉘 스크립트 PM2 제어
+### 3. 쉘 스크립트 PM2 제어
 
 사실 이 내용을 포스팅하기 위해서 시작했습니다. 이 부분만 따로 올리기에는 포스팅 내용이 너무 짧아서 조금씩 넣다 보니 이렇게 길어.... 졌습니다.
 
@@ -320,7 +259,7 @@ exit;
 ```
 
 
-### 클러스터 모드
+#### 클러스터 모드
 
 pm2를 실행시킬 때 -i 옵션을 사용하면 클러스터 모드로 실행이 됩니다. -i 뒤에 0을 지정하면 사용 가능한 CPU가 모두 실행이 됩니다. 간단하게 클러스터 모드를 실행시킬 수 있습니다.
 
@@ -332,7 +271,7 @@ pm2를 실행시킬 때 -i 옵션을 사용하면 클러스터 모드로 실행�
 
 ![](https://i.imgur.com/Jre6Yql.gif)
 
-### 정리
+#### 정리
 
 
 # Node.JS + Mysql 연동 [develop-mysql]
@@ -345,7 +284,7 @@ pm2를 실행시킬 때 -i 옵션을 사용하면 클러스터 모드로 실행�
 
 [Branch develop-mysql](https://github.com/cheese10yun/node-yun)
 
-## mysql 모듈설치
+### mysql 모듈설치
 
 *우선 필요 모듈부터 설치를 진행합니다. 데이터베이스 설치 및 설정은 다른 블로그에서 많이 다루고 있으니 생략하겠습니다.*
 
@@ -449,14 +388,14 @@ router.get('/mysql/test', function (req, res) {
 서버를 실행시키면 입력된 데이터베이스와 연결이 되고 `test_open` 메서드를 통해서 데이터베이스의 컨넥션이 제대로 생성이 됐나 간단한 로그로 출력됩니다. 이처럼 서버를 실행시켰을 때 데이터베이스와 제대로 연결되었는지 정보를 출력하시는 것을 권장합니다.
 
 
-## 마무리
+### 마무리
 이번 포스팅 내용은 짧긴 짧았지만 생각을 정리하고, 코드를 작성하고 또 그것을 문서로 다시 작성하는 것은 상당히 시간이 거리는 작업인 거 같습니다.  그래도 점점 익숙해지고 있기도 하고, 블로그를 포스팅한 날은 조회수를 보는 재미도 있습니다. 그런 의미로 좋아요, 공유하기 좀 부탁드리겠습니다....
 
 포스팅하다 보면 "아 이 내용이 먼저 나와야 이걸 설명하기가 편할 거 같아" 이런 생각이 계속 들어 제가 하고 싶은 포스팅하고 싶은 내용보다는 좀 더 앞부분을 계속 설명해드렸던 거 같습니다. 그래도 제가 전하고 싶은 기술 천천히, 꾸준하게 포스팅해 나아가겠습니다.
 
 긴글 읽어주셔서 감사합니다. 조만간에 찾아 뵙겠습니다.
 
-# Passport를 이용한 Login [develop-passport] 
+## Passport를 이용한 Login [develop-passport] 
 
 ![EC2 Innound](https://i.imgur.com/MlUddzo.png)
 
@@ -465,7 +404,7 @@ router.get('/mysql/test', function (req, res) {
 본 프로젝트는 [Branch develop-passport](https://github.com/cheese10yun/node-yun) 를 참조하시면 됩니다. 직접 돌려보시면서 이해하시는 것을 추천드립니다.
 
 
-##  필수 모듈 설치  
+### 필수 모듈 설치  
 npm 모듈로 모듈을 설치합니다.
 
 ```bash
@@ -476,7 +415,7 @@ npm install passport-local --save
 ```
 
 
-## Passport 설정
+### Passport 설정
 
 **환경설정은 저의 프로젝트 환경에서 설명드려 다소 차이가 있을 수 있습니다.**
 
@@ -575,12 +514,12 @@ passport.deserializeUser(function (user, done) {
 
 로그인에 성공하게 되면 Session정보를 저장을 완료했기에 이제 페이시 접근 시마다 사용자 정보를 갖게 Session에 갖게 됩니다. 인증이 완료되고 페이지 이동시 deserializeUser 메서드가 호출되는 것을 로그를 찍어 보시면 확인할 수 있습니다.
 
-### Session 정보 확인
+#### Session 정보 확인
 
 ![EC2 Innound](https://i.imgur.com/titCnYZ.png)
 
 
-## 로그인 유저 판단
+### 로그인 유저 판단
 
 `isAuthenticated()`
 
@@ -617,13 +556,13 @@ router.get('/logout', function (req, res) {
 });
 ```
 
-## 정리하며...
+### 정리하며...
 
 저희 회사에서도 passport를 이용해서 로그인 처리를 진행하고 있어 생각보다 어렵지 않게 정리할 수 있겠군 아 라는 생각을 했었습니다. 하지만 위의 기능을 하나하나 설명하려고 하니 그냥 전체적은 흐름만 대강 알지 각각의 기능들이 무엇을 의미하는지는 전혀 모르고 있었습니다. 그래서 초기에 생각했던 내용보다는 다소 길어졌고 다른 블로그에서도 이미 자세히 설명한 부분들이라 도음이 되셨을지는 모르겠습니다.
 
 긴 글읽어주셔서 감사합니다.
 
-# Node Passport를 이용한 Login + Mysql [develop-passport-mysql]
+## Node Passport를 이용한 Login + Mysql [develop-passport-mysql]
 
 안녕하세요 스타트업에서 근무하고 있는 신입 개발자입니다. 이전 포스팅에서는 데이터베이스 연결 없이 가단 한 문자열로 비교로 Passport를 이용해서 사용자 인증 절차를 진행했었습니다.
 
@@ -642,14 +581,14 @@ router.get('/logout', function (req, res) {
 * Passport Login 데이터베이스 비교 로직 추가  
 
 
-## 필수 모듈 설치
+### 필수 모듈 설치
 
 ```bash
 npm install jquery-validation --save
 npm install bcrypt --save
 ```
 
-## API 라우터 설정
+### API 라우터 설정
 `app.js`
 
 ```javascript
@@ -669,7 +608,7 @@ app.use('/api/v1', api);
 
 위와 같은 클라이언트의 요청은 모두 api.js 라우터에서 처리하게 됩니다.
 
-## 필수 모듈 require
+### 필수 모듈 require
 `app.js`
 
 ```javascript
@@ -682,7 +621,7 @@ var bcrypt = require('bcrypt');
 
 필요한 모듈을 require 시킵니다. bcrypt 모듈을 통해서 데이터베이스에 암호와 돼있는 패스워드와 로그인 시 입력한 패스워드를 비교 작업을 진행합니다. bcrypts는 다음 포스팅에서 다루겠습니다. 이번 포스팅에서는 정말 간단하게 설명하고 지나가겠습니다.
 
-## API Login 로직
+### API Login 로직
 `api.js`
 
 ```javascript
@@ -723,7 +662,7 @@ bcrypt의 compareSync 메서드를 통해서 로그인 폼에서 넘어온 패�
 이제 백엔드 작업을 어느 정도 마무리했으니 프런트 엔드 쪽으로 설명하겠습니다.
 
 
-### 이전 포스팅에서 작성한 login.hbs 하단에 아래코드를 붙여넣습니다.
+#### 이전 포스팅에서 작성한 login.hbs 하단에 아래코드를 붙여넣습니다.
 ```html
 <script src="jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="javascripts/login.js"></script>
@@ -786,7 +725,7 @@ jQuery validate는 많이들 사용하실 거 같으니 간략하게 설명하�
 
 해당 validation에 통화하지 않으면 각각에 맞는 메시지를 화면에 표시합니다. messsage 객체를 통해서 에러 메시지를 설정할 수도 있습니다. 아무것도 설정하지 않으면 영어로 해당  rules에 맞게 에러 메시지가 출력됩니다
 
-###  login.js jQeury validate remove
+####  login.js jQeury validate remove
 ```javascript
 remote: {
   url: '/api/v1/login',
@@ -857,16 +796,16 @@ passport.use(new LocalStrategy({
 ![](https://i.imgur.com/E3Q7px1.png)
 
 
-## 정리하며...
+### 정리하며...
 이번 포스팅은 상대적으로 소스 내용이 길어 다들 이해하셨을지 모르겠습니다. 이해가 안 되시면 깃허브에 있는 전체 소스를 보는 것을 추천드립니다. 깃허브에 있는 프로젝트에 해당 branch 마다 기능을 정리하는 방식으로 조금씩 조금씩 기능을 추가할 계획입니다. 기능은 딱히 통일성은 없고 많이 사용하고, 사내에서 만든 기능들을 추가할 거 같습니다. AWS S3 업로드, Passport 소셜 로그인, Redis 등 다소 통일성은 없으나 어디서나 쓸 수 있는 것들을 간단하게 정리해 나아가겠습니다.
 
 긴 글 읽어주셔서 감사드립니다. 다들 올해도 재미있게 개발할 수 있는 한 해가 되셨으면 합니다.
 
-# Crontab을 이용한 노드 API 호출 [develop-crontab-api]
+## Crontab을 이용한 노드 API 호출 [develop-crontab-api]
 
 안녕하세요 스타트업에서 근무하고 있는 신입 개발자입니다. 이번에 포스팅할 주제는 Crontab을 이용해서 특정 시점에Node API를 호출하는 내용입니다. [GitHub Brnacb develop-crontab-api](https://github.com/cheese10yun/node-yun)에 소스코드 참고해주세요
 
-## Crontab 간단 설명
+### Crontab 간단 설명
 Crontab은 스케줄링을 관리해주는 프로그램으로 특정 시간에 사용자가 직성한 스크립트나 명령어을 간단하게 실행시킬수 있습니다. 시간 설정이 매우 간단하고 직관적이라서 쉽게 사용 가능한게 가장큰 장점입니다.
 
     *    *    *    *    *  수행할 명령어
@@ -879,7 +818,7 @@ Crontab은 스케줄링을 관리해주는 프로그램으로 특정 시간에 �
     │   └──────────── 시 (0 - 23)
     └───────────── 분 (0 - 59)
 
-## Crontab 등록
+### Crontab 등록
 
   Crontab 설치는 여기서 다루지 않고 진행하겠습니다. 등록하기 전에 crontab에서 실행될 쉘스크립트 파일을 생성합니다. 해당 스크립트 작성은 Crontab등록이후 진행하겠습니다. 저 같은 경우는 crontab.sh로 생성했습니다.
 
@@ -910,7 +849,7 @@ echo 'success...';
 
 사실 게임데이터는 레디스에 저장하고 있어 셈플 예제로는 다소 복잡해서 이전에 설명했던 예제로 간단한 user 테이블의 모든 항목의 user 칼럼을 지우는 예제로 대체 하겠습니다. "DELETE"을 PUT, POST로 변경하셔도 그대로 작성 가능합니다
 
-## Node API 설정
+### Node API 설정
 
 `api.js` [api.js 설정](https://cheese10yun.github.io/2017/01/05/passport-mysql/) 은 이전 블로그 포스팅 내용을 참고해주세요.
 
@@ -933,33 +872,33 @@ router.delete('/crontab', function (req, res) {
 })
 ```
 req.body.sql 객체로 쿼리문을 받고 해당 쿼리문을 실행하는 간단한 예제입니다.
-## Crontab 실행 확인
+### Crontab 실행 확인
 
 ![EC2 Innound](https://i.imgur.com/BFB2EKG.png)
 
 
 위의 예제는 12시 05분에 실행되니 그 시간까지 기다릴 수는 없죠…. 그래도 1분에 한 번 실행되는 crontab 설정으로 실행이 되나 테스트를 진행하는 것도 권장합니다. 또한, 스크립트 파일을 명령어로 직접 실행시켜 일단 스크립트 파일이 제대로 작성되었나부터 확인하시는 것이 더욱 더 권장합니다.
 
-## 마무리...
+### 마무리...
 
 브런치를 사용하다가 소스코드 올리는 것이 너무 불편해서 티스토리로 블로그를 이전했습니다. 앞으로는 티스토리에서 계속 찾아뵙겠습니다. 긴글 읽어주셔서 감사합니다.
 하지만... 깃허브 페이지로 또 옮겼네요... 3 번째 이사....
 
 
-# Passport를 이용한 네이버, 카카오, 페이스북 로그인 [develop-passport-social-login]
+## Passport를 이용한 네이버, 카카오, 페이스북 로그인 [develop-passport-social-login]
 
 ![EC2 Innound](https://i.imgur.com/dJDKGrn.png)
 
 이전에 [Passport 간단로그인](https://cheese10yun.github.io/2017/01/01/Passport-part1/) [Passport 데이터베이스 연동](https://cheese10yun.github.io/2017/01/05/passport-mysql/)을 포스팅했습니다. 그래서 이번에는 Passport를 이용한 소셜 로그인 **페이스북, 카카오, 네이버 로그인 및 회원 가입** 기능을 포스팅해보겠습니다. Passport에 대해서 기초지식이 없으시며 앞서 포스티한 주제를 보시는 것을 권장드립니다. 또한 [GitHub develop-passport-social-login](https://github.com/cheese10yun/node-yun)에 올려져있는 전체 소스를 보는 것을 권장드립니다.
 
-## Developers 등록
+### Developers 등록
 ![EC2 Innound](https://i.imgur.com/2qLERpk.png)
 
 
 본 포스팅에서는 개발자 등록은 다루지 않겠습니다. 아래의 작업을 하기위해서는 네이버, 카카오, 페이스북 개발자 센터에서 앱설정을 완료해주세요. 본 포스팅은 Passport 로직에 집중하겠습니다.
 
 
-## 필수 모듈설치 및 require
+### 필수 모듈설치 및 require
 
 
 ```bash
@@ -977,7 +916,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
 ```
 
-## Developers 정보 등록
+### Developers 정보 등록
 
 더이상 데이터베이스 정보만 갖고 있지 않아 `db_info.js` 에서 `secret.js ` 변경했습니다. `db_info` 로 데이터베이스 접근을 진행하겠습니다. 자세한 내용은 아래에서 다시 설명드리겠습니다.
 
@@ -1016,7 +955,7 @@ module.exports = {
 
 `federation` 객체에 네이버, 카카오, 페이스북 Developers 정보를 입력합니다.  `secret.js`  민감한 정보를 갖고있는 파일들은 프로젝트 디렉토리에 포함시키지 않는 것이 바람직합니다. 깃허브에는 소스코드를 공개하기 위해서 업로드하긴 했습니다... <del>안티패턴도 좋은 경험 입니다.</del>
 
-## 회원 가입 페이지
+### 회원 가입 페이지
 
 `login.hbs <a href>` 태그에 로그인 처리를 담당할 URL을 입력합니다. 자세한 로직은 아래에서 설명하겠습니다.
 
@@ -1049,7 +988,7 @@ module.exports = {
 </form>
 ```
 
-## Passport 로직 구현
+### Passport 로직 구현
 
 `index.js(router)`**네이버 로그인**
 
@@ -1169,7 +1108,7 @@ router.get('/auth/login/facebook/callback',
 
 `router.get('/auth/login/naver/callback'...)` 해당 라우터는 로그인이 성공할 경우 인덱스 페이지로 리다이렉트 시켜주고 실패할 경우에는 다시 `'/login'` 다시 로그인 페이지로 리다이렉트 시켜줍니다.
 
-## 로그인 및 회원 가입 로직
+### 로그인 및 회원 가입 로직
 
 ```javascript
 function loginByThirdparty(info, done) {
@@ -1215,10 +1154,10 @@ function loginByThirdparty(info, done) {
 
 교보문고 사이트 경우에도 네이버 아이디로 회원가입을 진행하고 교보문고 계정에 대해서 아이디, 패스워드를 한 번 더 입력받는 시스템입니다. <del>우리만 그런게 아니야...</del>
 
-## 마무리
+### 마무리
 위의 예제는 깃허브에 있는 전체 코드를 보시는 것을 권장해 드립니다. 생각보다 예제소스가 길어서 설명하는 게 매끄럽지 못한 거 같습니다. 로그인 및 회원 가입 로직은 각자 환경에 맞게 설계해야 할 거 같아 최대한 단순하게 로직 처리를 진행하게 됐습니다. 긴글 읽어주셔서 감사합니다.
 
-# Node Mysql Multiple Insert [develop-passport-mysql-multiple-insert]
+## Node Mysql Multiple Insert [develop-passport-mysql-multiple-insert]
 
 데이터베이스에 여러 개의 Insert를 할 일은 정말 많습니다. 저희는 대체로 타 게임회사의 데이터를 벌크로 내려받아야 하는 경우가 있어 여러 번의 Insert 작업을 진행하게 됩니다.
 이러한 경우에 ***반복문을 사용하지 않고 여러 개를 Insert 하는 방법을 소개해드리겠습니다.***
@@ -1265,7 +1204,7 @@ insert into `user` (`user_id`, `password`, `nickname`, `email`, `signup_dt`) val
 ('user_005', 'pw_05', 'name_05', 'email_05@a.com', '2016-10-10');
 ```
 
-# Node 다른 서버 API 호출 [develop-api-call]
+## Node 다른 서버 API 호출 [develop-api-call]
 노드 서버에서 다른 API를 호출하는 방법을 소개해드리겠습니다. 물론 프론트에서 Ajax를 이용해서 다른 서버의 API를 간단하게 호출할 수 있지만 Ajax로 간단하게 호출할 수 있지만, 해당 API를 호출한 이후 자신의 서버에 해당 기록을 남겨야 하는 경우는 프론트가 아닌 백에서 처리해야 합니다.
 
 ***저희 서비스 예를 들어 설명하면 노드 서버에서 제휴 모바일 게임의 포인트를 Credit 할 수 있는 기능이 있습니다. 이때 게임 서버의 API를 호출을 Node 서버에서 진행해야 해당 기록을 데이터베이스에 남길 수 있습니다.***
@@ -1278,7 +1217,7 @@ npm install request --save
 ```
 
 
-## 전체 소스
+### 전체 소스
 ```javascript
 module.exports = function (callee) {
     function API_Call(callee) {
@@ -1336,7 +1275,7 @@ module.exports = function (callee) {
 };
 ```
 
-## HOST 설정
+### HOST 설정
 ```javascript
 (function () {
     switch (callee) {
@@ -1359,7 +1298,7 @@ module.exports = function (callee) {
 <code><b>var API_Call = require('../service/API_Call')('another');</b></code> 이런 식으로 모듈을 require 시킬 때 해당 API 서버를 쉽게 정할 수 있습니다.
 
 
-## 타 서버의 API 정보 설정
+### 타 서버의 API 정보 설정
 ```javascript
 function API_Call(callee) {
     var OPTIONS = {
@@ -1424,7 +1363,7 @@ function statusCodeErrorHandler(statusCode, callback , data) {
 **최소 위의 5개 정도의 StatusCode에 알맞은 로직을 추가하는 것을 권장합니다.**
 
 
-## API 호출
+### API 호출
 
 ```javascript
 var API_Call = require('../service/API_Call')('another');
@@ -1453,7 +1392,7 @@ router.post('/login/another/api', function (req, res) {
 
 **Postman을 이용해서 api/v1/login/another/api 를 호출한 결과입니다.**
 
-## 마무리
+### 마무리
 
 역시 소스 코드가 길어지면 코드 설명이 산으로 가는 듯합니다.
 역량 부족이겠죠… 애초에 구상했던 코드는 아주 간단했는데 욕심을 부려서 조금 더 넣다 보니 제가 봐도 설명 부분이 부족하다는 것이 느껴지네요.
@@ -1465,7 +1404,7 @@ router.post('/login/another/api', function (req, res) {
 ***AWS S3 이미지 업로드시 이미지 최적화를 진행하고 업로드하는 것이 브라우저에서의 속도가 크게 도움이 됩니다.*** `formidable` 업로드 , `AWS-S3` 업로드는 이 전 포스팅에서 한번 다뤘기 때문에 간단하게 설명하고 이미지 최적화 적업에 대해서 자세히 포스팅하겠습니다.
 ***[Github](https://github.com/cheese10yun/node-aws-s3-Image-optimization)클릭해서 전체 소스를 보시는 것을 권장합니다.***
 
-## 작업순서
+### 작업순서
 1. `formidable` 모듈로 이미지 업로드 진행
 2. `imagemin` 모듈로 업로드된 이미지 최적화 진행
 3. `aws-sdk` 모듈을로 최적화 작업이 완료된 이미지 S3에 업로드
@@ -1480,7 +1419,7 @@ npm install --save formidable
 ```
 
 
-## UploadService.js 설명
+### UploadService.js 설명
 
 ### formidable 모듈을 이용한 이미지 업로드
 ```javascript
@@ -1504,7 +1443,7 @@ Upload.formidable = (req, callback) => {
 * `form.on('error')` formidable 업로드 중 오류 발생시 `callback`으로 `err` 전달
 * `form.on('end')` formidable 업로드가 오류 없이 완료되면 `callback`으로 파일정보와, 필드값 전달
 
-### imagemin 모듈을 이용한 이미지 최적화
+#### imagemin 모듈을 이용한 이미지 최적화
 ```javascript
 Upload.optimize = (files, callback) => {
   async.each(files, (file, cb) => {
@@ -1526,7 +1465,7 @@ Upload.optimize = (files, callback) => {
 * 위의 예제는 업로된 경로와 최적화가 이루어지는 경로가 동일하여 덮어쓰여 집니다.
 * 이미지 최적화 플러그인 `imageminPngquant` 사용
 
-### imageminPngquant 플러그인
+#### imageminPngquant 플러그인
 
 ```javascript
 plugins: [
@@ -1539,7 +1478,7 @@ plugins: [
 * `imageminPngquant` 의 다양한 속성은 [imageminPngquant](https://www.npmjs.com/package/imagemin-pngquant) 에서 확인 할 수 있습니다.
 * `imageminPngquant` 플러그인 이외에도 다양한 플러그인을 사용해서 이미지에 대한 다양한 작업들을 진행할 수 있습니다.
 
-### 최적화 완료된 이미지 S3 업로드
+#### 최적화 완료된 이미지 S3 업로드
 
 ```javascript
 Upload.s3 = (files, key, callback) => {
@@ -1564,7 +1503,7 @@ Upload.s3 = (files, key, callback) => {
 * [Yun Blog Node AWS S3 업로드](https://cheese10yun.github.io/Node-AWS-S3-Upload) 자세한 설명은 참고
 
 
-## router 에서 사용법
+### router 에서 사용법
 ```javascript
 router.post('/upload', (req, res) => {
   const tasks = [
@@ -1594,7 +1533,7 @@ router.post('/upload', (req, res) => {
 });
 ```
 
-### tasks 작업은 UploadService 모듈로 진행
+#### tasks 작업은 UploadService 모듈로 진행
 
 * 위에서 작성한 `UploadService.js` 모듈로 아래의 작업들이 진행됩니다.
 * `formidable` 메소드로 이미지 업로드 진행
@@ -1603,7 +1542,7 @@ router.post('/upload', (req, res) => {
 * `async.waterfall` 으로 위 작업 순차 진행
 
 
-## 사이즈 비교
+### 사이즈 비교
 
 원본              | imageOptim App | imagemin
 :-------------- | :------------- | :-------------
@@ -1619,13 +1558,13 @@ router.post('/upload', (req, res) => {
 * bit color 값은 8bit로 수정됩니다.
 * 이미지에 대한 지식이 없어 비포 에프터 사진을 첨부했습니다.
 
-## 원본 이미지
+### 원본 이미지
 ![](http://i.imgur.com/mx9UTs2.png)
 
-## 최적화 이미지
+### 최적화 이미지
 ![](http://i.imgur.com/4pEMLxw.png)
 
-## 마무리
+### 마무리
 
 최근에 이미지 S3 업로드시 이미지 최적화 해야 할 작업이 있어서 코드를 만들고 간단하게 정리해보았습니다. 아직 프로덕션에 사용하는 코드는 아니라서 그렇게 안전한 코드는 아닌점... 미리 말씀드립니다. 이 플러그인 외에도 이미지 크롭, 이미지 해상도 조정 등 다양한 플러그인들이 많아 좀 더 검색해보시고 적용하시면 보다 좋을 거 같습니다. 부디 도움이 조금이라도 되셨기를 바랍니다.
 
