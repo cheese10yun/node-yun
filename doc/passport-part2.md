@@ -1,3 +1,16 @@
+<!-- TOC -->
+
+- [Node Passport를 이용한 Login + Mysql [develop-passport-mysql]](#node-passport%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-login--mysql-develop-passport-mysql)
+  - [필수 모듈 설치](#%ED%95%84%EC%88%98-%EB%AA%A8%EB%93%88-%EC%84%A4%EC%B9%98)
+  - [API 라우터 설정](#api-%EB%9D%BC%EC%9A%B0%ED%84%B0-%EC%84%A4%EC%A0%95)
+  - [필수 모듈 require](#%ED%95%84%EC%88%98-%EB%AA%A8%EB%93%88-require)
+  - [API Login 로직](#api-login-%EB%A1%9C%EC%A7%81)
+    - [이전 포스팅에서 작성한 login.hbs 하단에 아래코드를 붙여넣습니다.](#%EC%9D%B4%EC%A0%84-%ED%8F%AC%EC%8A%A4%ED%8C%85%EC%97%90%EC%84%9C-%EC%9E%91%EC%84%B1%ED%95%9C-loginhbs-%ED%95%98%EB%8B%A8%EC%97%90-%EC%95%84%EB%9E%98%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%B6%99%EC%97%AC%EB%84%A3%EC%8A%B5%EB%8B%88%EB%8B%A4)
+    - [login.js jQeury validate remove](#loginjs-jqeury-validate-remove)
+  - [정리하며...](#%EC%A0%95%EB%A6%AC%ED%95%98%EB%A9%B0)
+
+<!-- /TOC -->
+
 ## Node Passport를 이용한 Login + Mysql [develop-passport-mysql]
 
 안녕하세요 스타트업에서 근무하고 있는 신입 개발자입니다. 이전 포스팅에서는 데이터베이스 연결 없이 가단 한 문자열로 비교로 Passport를 이용해서 사용자 인증 절차를 진행했었습니다.

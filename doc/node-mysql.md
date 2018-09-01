@@ -1,3 +1,12 @@
+<!-- TOC -->
+
+- [Node.JS + Mysql 연동 [develop-mysql]](#nodejs--mysql-%EC%97%B0%EB%8F%99-develop-mysql)
+    - [mysql 모듈설치](#mysql-%EB%AA%A8%EB%93%88%EC%84%A4%EC%B9%98)
+    - [마무리](#%EB%A7%88%EB%AC%B4%EB%A6%AC)
+
+<!-- /TOC -->
+
+
 # Node.JS + Mysql 연동 [develop-mysql]
 
 안녕하세요 스타트업에서 근무하고 있는 신입 개발자입니다. 이번에 정리할 내용은 Node + Mysql 연동입니다. 이미 수많은 예제가 있으나 앞으로 포스팅할 내용들이 데이터베이스가 필수적으로 필요하니 간단 정리 및 간단하게 팁?을 소개하여드리겠습니다.

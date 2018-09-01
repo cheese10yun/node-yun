@@ -1,3 +1,9 @@
+<!-- TOC -->
+
+- [Node Mysql Multiple Insert [develop-passport-mysql-multiple-insert]](#node-mysql-multiple-insert-develop-passport-mysql-multiple-insert)
+
+<!-- /TOC -->
+
 ## Node Mysql Multiple Insert [develop-passport-mysql-multiple-insert]
 
 데이터베이스에 여러 개의 Insert를 할 일은 정말 많습니다. 저희는 대체로 타 게임회사의 데이터를 벌크로 내려받아야 하는 경우가 있어 여러 번의 Insert 작업을 진행하게 됩니다.

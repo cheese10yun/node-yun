@@ -1,3 +1,16 @@
+
+<!-- TOC -->
+
+- [AWS EC2 Node + Nginx Setting](#aws-ec2-node--nginx-setting)
+    - [1. EC2 기본 셋팅 (AMI)](#1-ec2-%EA%B8%B0%EB%B3%B8-%EC%85%8B%ED%8C%85-ami)
+        - [Port 설정](#port-%EC%84%A4%EC%A0%95)
+        - [GitHub 설정](#github-%EC%84%A4%EC%A0%95)
+    - [2. EC2 Node.js 설치](#2-ec2-nodejs-%EC%84%A4%EC%B9%98)
+    - [3. GitHub Clone](#3-github-clone)
+    - [4. Nginx 연동](#4-nginx-%EC%97%B0%EB%8F%99)
+
+<!-- /TOC -->
+
 ## AWS EC2 Node + Nginx Setting
 안녕하세요. 스타트업에서 근무 중인 신입 개발자입니다. 근무하면서 얻은 정보를 정리하며 올려봅니다. 사내환경 같은 경우는 각자 로컬 환경에서 개발하고, 어느 정도 작업이 완료됐다 싶으면 테스트 서버(EC2)에 프로젝트를 올리는 작업을 아래와 같이 진행하게 됩니다.
 

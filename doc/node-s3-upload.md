@@ -1,3 +1,22 @@
+<!-- TOC -->
+
+- [AWS S3 업로드시 이미지 최적화 [develop-s3-upload]](#aws-s3-업로드시-이미지-최적화-develop-s3-upload)
+        - [작업순서](#작업순서)
+    - [필수 패키지 설치](#필수-패키지-설치)
+        - [UploadService.js 설명](#uploadservicejs-설명)
+        - [formidable 모듈을 이용한 이미지 업로드](#formidable-모듈을-이용한-이미지-업로드)
+            - [imagemin 모듈을 이용한 이미지 최적화](#imagemin-모듈을-이용한-이미지-최적화)
+            - [imageminPngquant 플러그인](#imageminpngquant-플러그인)
+            - [최적화 완료된 이미지 S3 업로드](#최적화-완료된-이미지-s3-업로드)
+        - [router 에서 사용법](#router-에서-사용법)
+            - [tasks 작업은 UploadService 모듈로 진행](#tasks-작업은-uploadservice-모듈로-진행)
+        - [사이즈 비교](#사이즈-비교)
+        - [원본 이미지](#원본-이미지)
+        - [최적화 이미지](#최적화-이미지)
+        - [마무리](#마무리)
+
+<!-- /TOC -->
+
 # AWS S3 업로드시 이미지 최적화 [develop-s3-upload]
 
 ***AWS S3 이미지 업로드시 이미지 최적화를 진행하고 업로드하는 것이 브라우저에서의 속도가 크게 도움이 됩니다.*** `formidable` 업로드 , `AWS-S3` 업로드는 이 전 포스팅에서 한번 다뤘기 때문에 간단하게 설명하고 이미지 최적화 적업에 대해서 자세히 포스팅하겠습니다.
