@@ -2,7 +2,7 @@
 
 .idea/
 node_modules/
-docs/
+doc/
 
 ### Node template
 # Logs
